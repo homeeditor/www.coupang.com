@@ -265,10 +265,15 @@ h1 {
     <div class="share-title">🍙 이 레시피 공유하기</div>
     <p>친구들에게도 알려주세요!</p>
 
-    <div class="share-buttons">
-      <a class="kakao" href="#">💬 카톡</a>
-      <button class="copy" onclick="copyLink()">🔗 링크복사</button>
-    </div>
+   <div class="share-buttons">
+  <button class="kakao" onclick="sharePage()">
+    💬 공유하기
+  </button>
+
+  <button class="copy" onclick="copyLink()">
+    🔗 링크복사
+  </button>
+</div>
   </div>
 
   <div class="footer">
@@ -281,6 +286,18 @@ h1 {
 function copyLink() {
   navigator.clipboard.writeText(window.location.href);
   alert("링크가 복사됐어요!");
+}
+
+function sharePage() {
+  if (navigator.share) {
+    navigator.share({
+      title: '촉촉한 김밥 레시피',
+      text: '시간 지나도 밥알이 살아있는 김밥 🍙',
+      url: window.location.href
+    });
+  } else {
+    copyLink();
+  }
 }
 </script>
 
